@@ -1,0 +1,51 @@
+h1{
+	background-color: grey;
+	color: white;
+	text-align: center;
+	font-size: 35px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#wrapper{
+	background-image: url("https://www.welovesolo.com/wp-content/uploads/vecteezy/23/bvpguxfp4vi.jpg");
+	background-repeat: repeat-x;
+	min-height: 650px;
+}
+
+.display{
+	text-align: center;
+	font-size: 45px;
+}
+
+.questionBox{
+	text-align: center;
+	background-color: lightgrey;
+	font-size: 30px;
+}
+
+.answerBox{
+	background-color: white;
+	font-size: 30px;
+
+
+}
+
+.container3
+{
+	background-color: grey;
+	position: relative;
+	top:-150px;
+	text-align: center;
+	padding: 20px;
+	color: white;
+}
+
+.answerButtons{
+	text-align: center;
+	font-size: 30px;
+}
+
+.guess{
+	margin:10px;
+}

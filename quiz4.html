@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class = "title">
+		<h1>Awesome General Knowledge Quiz!!</h1>
+	</div>
+    <div id="wrapper">
+    	<div class="row">
+    		<div class = "col-lg-12 timer">
+    			<h2 class = "display">15
+    			</h2>
+    		</div>
+    	</div>
+    	<div class = "row">
+    		<div class = "col-lg-6 col-lg-offset-3 questionBox">
+    		Click "Start" to begin the quiz!
+    		</div>
+    	</div>
+    	<div class = "row">
+    		<div class = "col-lg-6 col-lg-offset-3 answerBox">
+    		  <div class="row">
+    		  		<div class="col-lg-12 aBox">
+
+    		  		</div>
+    		  </div>
+    		   <div class="row">
+    		  		<div class="col-lg-12 bBox">
+    		  		    		  			
+    		  		</div>
+    		  </div>
+    		   <div class="row">
+    		  		<div class="col-lg-12 cBox">
+    		  		    		  			
+    		  		</div>
+    		  </div>
+    		   <div class="row">
+    		  		<div class="col-lg-12 dBox">
+    		  		    		  			
+    		  		</div>
+    		  </div>
+    		</div>
+    	</div>
+    	<div class = "row">
+    		<div class = "col-lg-6 col-lg-offset-3 answerButtons">
+    			 <button id="start">Start</button>
+    		</div>
+    	</div>
+    </div>
+    <div class="container3">
+		<char>&#169</char>2016 Edouard Batll<char>&#233</char>
+	</div>	
+ 	
+ 	<script src="https://code.jquery.com/jquery.js"></script>
+
+ 	<script>
+
+ 	var questions = ["How long can Beavers hold their breath under water?", "How many noses do slugs have?", "How fast can a Bee fly?", "By what ratio do termites outnumber humans?", "Which vegetable is also a flower?", "Which state has the highest percentage of people who walk to work?", "Peaches are related to which nut?", "Which king has no moustache?", "Who invented the coat hanger?", "How many bones is your skull made up of?"];
+ 	var aAnswers = ["25 minutes", "1","15mph","2:1","Eggplant", "New York", "Almonds", "King of Hearts", "Thomas Edison", "13"]
+ 	var bAnswers = ["35 minutes", "2","30mph","10:1", "Brocolli", "New Mwxico", "Peanuts", "King of Spades", "Marcel Bich", "29"]
+ 	var cAnswers = ["45 minutes","3","45mph","100:1", "Celery", "Oregon", "Walnuts", "King of Clubs", "Thomas Jefferson", "37"]
+ 	var dAnswers = ["55 minutes","4","60mph","1000:1", "Romaine Lettuce", "Alaska", "Pecans", "King of Diamonds", "Isambard Kingdom Brunell", "42"]
+    var answers = ["c", "d","a","b", "b", "d", "a", "a", "c", "b"];
+    var i = 0
+    var correct = 0
+    var incorrect = 0
+    
+    var stopwatch = {
+    time:0,
+   
+    reset: function(){
+        stopwatch.time = 0;
+        $('.display').html('15');
+       
+    },
+    start: function(){
+        counter = setInterval(stopwatch.count, 1000);
+    },
+    stop: function(){
+        clearInterval(counter);
+    },
+   
+    count: function(){
+        stopwatch.time++;
+       
+        $('#display').html(stopwatch.time);
+    },
+    
+};
+ 		
+ 		 $(document).ready(function(){
+ 		 	$("#start").click(function(){
+ 		 		$(".answerButtons").html("<button class = 'guess' value = 'a'>A</button><button class = 'guess' value = 'b'>B</button><button class = 'guess' value = 'c'>C</button><button class = 'guess' value = 'd'>D</button>");
+ 		 		$(".questionBox").text(questions[i]);
+ 		 		$(".aBox").text("A: " + aAnswers[i]);
+ 		 		$(".bBox").text("B: " + bAnswers[i]);
+ 		 		$(".cBox").text("C: " + cAnswers[i]);
+ 		 		$(".dBox").text("D: " + dAnswers[i]);
+ 		 		$("stopwatch").click(stopwatch.start);
+ 		 		console.log(stopwatch.time)
+
+ 		 		$(".guess").click(function(){
+ 		 			var guess = (this.value)
+ 		 			// console.log(guess)
+ 		 			// console.log(answers[i])
+ 		 			if (guess == answers[i]){
+ 		 				alert("Correct!");
+ 		 				correct++;
+ 		 				i++;
+ 		 				$(".questionBox").text(questions[i])
+ 		 				$(".aBox").text("A: " + aAnswers[i]);
+		 		 		$(".bBox").text("B: " + bAnswers[i]);
+		 		 		$(".cBox").text("C: " + cAnswers[i]);
+		 		 		$(".dBox").text("D: " + dAnswers[i]);
+		 		 		var percentage = ((100/(questions.length))* correct);
+		 		 		
+ 		 			}
+
+ 		 			// if (i>questions.length){
+ 		 			// 	$(".questionbox").text("The Quiz is over you scored " + percentage"%");
+ 		 			// }
+
+ 		 			else {
+ 		 				alert("Oh no! That's not right. The correct answer is " + answers[i]);
+ 		 				incorrect++;
+ 		 				i++;
+ 		 				$(".questionBox").text(questions[i])
+ 		 				$(".aBox").text("A: " + aAnswers[i]);
+		 		 		$(".bBox").text("B: " + bAnswers[i]);
+		 		 		$(".cBox").text("C: " + cAnswers[i]);
+		 		 		$(".dBox").text("D: " + dAnswers[i]);
+		 		 		var percentage = ((100/(questions.length))* correct);
+		 		 		
+ 		 			}
+
+ 		 			console.log( correct)
+ 		 			console.log(incorrect)
+ 		 				
+ 		 			console.log(percentage)	 					 						 			
+ 		 		});
+ 		 	});
+ 		 });
+
+ 	</script>
