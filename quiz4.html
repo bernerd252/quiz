@@ -70,6 +70,12 @@
 
  	<script>
 
+    window.onload = function(){
+    
+    $('#reset').on('click', stopwatch.reset);
+    $('#start').on('click', stopwatch.start);
+};
+
  	var questions = ["How long can Beavers hold their breath under water?", "How many noses do slugs have?", "How fast can a Bee fly?", "By what ratio do termites outnumber humans?", "Which vegetable is also a flower?", "Which state has the highest percentage of people who walk to work?", "Peaches are related to which nut?", "Which king has no moustache?", "Who invented the coat hanger?", "How many bones is your skull made up of?"];
  	var aAnswers = ["25 minutes", "1","15mph","2:1","Eggplant", "New York", "Almonds", "King of Hearts", "Thomas Edison", "13"]
  	var bAnswers = ["35 minutes", "2","30mph","10:1", "Brocolli", "New Mwxico", "Peanuts", "King of Spades", "Marcel Bich", "29"]
@@ -81,40 +87,40 @@
     var incorrect = 0
     
     var stopwatch = {
-    time:0,
-   
+    time:15,
+    
     reset: function(){
-        stopwatch.time = 0;
+        stopwatch.time = 15;
+        
         $('.display').html('15');
-       
+        
     },
     start: function(){
         counter = setInterval(stopwatch.count, 1000);
     },
-    stop: function(){
-        clearInterval(counter);
+    
+    count: function(){
+        stopwatch.time--;
+        
+        $('.display').html(stopwatch.time);
     },
    
-    count: function(){
-        stopwatch.time++;
-       
-        $('#display').html(stopwatch.time);
-    },
-    
 };
  		
  		 $(document).ready(function(){
  		 	$("#start").click(function(){
+              stopwatch.start();  
  		 		$(".answerButtons").html("<button class = 'guess' value = 'a'>A</button><button class = 'guess' value = 'b'>B</button><button class = 'guess' value = 'c'>C</button><button class = 'guess' value = 'd'>D</button>");
  		 		$(".questionBox").text(questions[i]);
  		 		$(".aBox").text("A: " + aAnswers[i]);
  		 		$(".bBox").text("B: " + bAnswers[i]);
  		 		$(".cBox").text("C: " + cAnswers[i]);
  		 		$(".dBox").text("D: " + dAnswers[i]);
- 		 		$("stopwatch").click(stopwatch.start);
+ 		 		// $("stopwatch").click(stopwatch.start());
  		 		console.log(stopwatch.time)
 
  		 		$(".guess").click(function(){
+                    stopwatch.reset();
  		 			var guess = (this.value)
  		 			// console.log(guess)
  		 			// console.log(answers[i])
@@ -131,9 +137,18 @@
 		 		 		
  		 			}
 
- 		 			// if (i>questions.length){
- 		 			// 	$(".questionbox").text("The Quiz is over you scored " + percentage"%");
- 		 			// }
+                    // if (stopwatch.time < "0"){
+                    //     alert("Oh no! You ran out of time!");
+                    //     incorrect++;
+                    //     i++;
+                    //     $(".questionBox").text(questions[i])
+                    //     $(".aBox").text("A: " + aAnswers[i]);
+                    //     $(".bBox").text("B: " + bAnswers[i]);
+                    //     $(".cBox").text("C: " + cAnswers[i]);
+                    //     $(".dBox").text("D: " + dAnswers[i]);
+                    //     var percentage = ((100/(questions.length))* correct);
+                    // }
+
 
  		 			else {
  		 				alert("Oh no! That's not right. The correct answer is " + answers[i]);
@@ -148,9 +163,15 @@
 		 		 		
  		 			}
 
+                    // if(i==(questions.length-1)){
+                    //     $(".questionBox").text("The Quiz is over. You scored "+ percentage + "%. Click 'Start'to play again.");
+                    //     $(".answerButtons").html("<button id= 'start' >Start</button>");
+
+                    // }
+
  		 			console.log( correct)
  		 			console.log(incorrect)
- 		 				
+ 		 			console.log(stopwatch.time)	
  		 			console.log(percentage)	 					 						 			
  		 		});
  		 	});
